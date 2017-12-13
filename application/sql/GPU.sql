@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS `videocard`;
+CREATE TABLE IF NOT EXISTS `videocard` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `designer` varchar(50) DEFAULT NULL,
+  `slug` varchar(50) DEFAULT NULL,
+  `series` varchar(50) DEFAULT NULL,
+  `price` varchar(50) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  `clockingSpeed` varchar(50) DEFAULT NULL,
+  `boostSpeed` varchar(50) DEFAULT NULL,
+  `streamProcessors` varchar(50) DEFAULT NULL,
+  `features` varchar(50) DEFAULT NULL,
+  `directx` varchar(50) DEFAULT NULL,
+  `opengl` varchar(50) DEFAULT NULL,
+  `memoryAmount` varchar(50) DEFAULT NULL,
+  `memoryType` varchar(50) DEFAULT NULL,
+  `memoryInterface` varchar(50) DEFAULT NULL,
+  `memorySpeed` varchar(50) DEFAULT NULL,
+  `displayport` varchar(50) DEFAULT NULL,
+  `displayportVer` varchar(50) DEFAULT NULL,
+  `dviD` varchar(50) DEFAULT NULL,
+  `dviDualChannels` varchar(50) DEFAULT NULL,
+  `slotsUsed` varchar(50) DEFAULT NULL,
+  `dviHdcp` varchar(50) DEFAULT NULL,
+  `hdmi` varchar(50) DEFAULT NULL,
+  `hdmiVer` varchar(50) DEFAULT NULL,
+  `multiGpu` varchar(50) DEFAULT NULL,
+  `tdp` varchar(50) DEFAULT NULL,
+  `connection` varchar(50) DEFAULT NULL,
+  `extra` varchar(50) DEFAULT NULL,
+  `vrReady` varchar(50) DEFAULT NULL,
+  `gSync` varchar(50) DEFAULT NULL,
+  `sli` varchar(50) DEFAULT NULL,
+  `crossfire` varchar(50) DEFAULT NULL,
+  `releaseDate` varchar(50) DEFAULT NULL,
+  `warranty` varchar(50) DEFAULT NULL,
+  `dimensions` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+INSERT INTO `videocard` (`id`, `name`, `designer`, `slug`, `series`, `price`, `description`, `clockingspeed`, `boostspeed`, `streamProcessors`, `features`,`directx`, `opengl`, 
+  `memoryAmount`, `memoryType`, `memoryInterface`, `memorySpeed`, `displayport`, `displayportVer`, `dviD`, `dviDualChannels`, `slotsUsed`, `dviHdcp`, `hdmi`, `hdmiVer`
+  , `multiGpu`, `tdp`, `connection`, `extra`, `vrReady`, `gSync`, `sli`, `crossfire`, `releaseDate`, `warranty`, `dimensions`) VALUES
+(1, 'Gigabyte GTX 1070', 'Nvidia', '', 'GTX Series', '€499.99', 'Word je er niet eens ziek van?', '1620 Mhz', '1822 Mhz', '1920', 'Nvidia Gamestream', '12', '4.5', '8192 MB', 'GDDR5', '256 bit', 
+  '8 Ghz', '3', '1.4', '1', '1', '2', '1', '1', '2.0b', 'Sli Support', '150 Watt', '1 x 8-pins(6+2) aansluiting', 'Windforce 3X Active cooling', 'Yes', 
+  'Yes', 'Yes', 'No', '01/01/0000', '36 Maanden', 'Width 114 mm x Height 41 mm x Length 280 mm');

@@ -1,0 +1,40 @@
+DROP TABLE IF EXISTS `ssd`;
+CREATE TABLE IF NOT EXISTS `ssd` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `serie` varchar(50) DEFAULT NULL,
+  `slug` varchar(50) DEFAULT NULL,
+  `designer` varchar(50) DEFAULT NULL,
+  `description` varchar(50) DEFAULT NULL,
+  `price` varchar(50) DEFAULT NULL,
+  `construction` varchar(50) DEFAULT NULL,
+  `component` varchar(50) DEFAULT NULL,
+  `capacity` varchar(50) DEFAULT NULL,
+  `interface` varchar(50) DEFAULT NULL,
+  `read` varchar(50) DEFAULT NULL,
+  `write` varchar(50) DEFAULT NULL,
+  `chiptype` varchar(50) DEFAULT NULL,
+  `cache` varchar(50) DEFAULT NULL,
+  `powerConnector` varchar(50) DEFAULT NULL,
+  `powerStart` varchar(50) DEFAULT NULL,
+  `powerStandby` varchar(50) DEFAULT NULL,
+  `iopsRead` varchar(50) DEFAULT NULL,
+  `iopsWrite` varchar(50) DEFAULT NULL,
+  `mtbf` varchar(50) DEFAULT NULL,
+  `trim` varchar(50) DEFAULT NULL,
+  `controller` varchar(50) DEFAULT NULL,
+  `accessoires` varchar(50) DEFAULT NULL,
+  `dimensions` varchar(50) DEFAULT NULL,
+  `releaseDate` varchar(50) DEFAULT NULL,
+  `information` varchar(50) DEFAULT NULL,
+  `weight` varchar(50) DEFAULT NULL,
+  `warranty` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+INSERT INTO `ssd` (`id`, `serie`, `slug`, `designer`, `description`, `price`, `construction`, `component`, `capacity`, `interface`, `read`, `write`, `chiptype`, `cache`,
+  `powerConnector`, `powerStart`, `powerStandby`, `iopsRead`, `iopsWrite`, `mtbf`, `trim`, `controller`, `accessoires`, `dimensions`, `releaseDate`, `information`, `weight`, `warranty`) VALUES
+(1, ' 850 EVO', '', 'Samsung', 'Standaard informatie', '€129,99', '2,5"', 'SSD',
+  '250 GB', '1x SATA/600','540 MB/s', '520 MB/s','MLC', 
+  '512 MB', '15-Pins aansluiting', '2,4 W', '0,05 W',
+  '97.000', '88.000','1.500.000 uur', 'Ja','Samsung MGX Controller', 
+  'Magician software voor SSD-beheer','100 mm x 69,85 mm x 6,8 mm', '01/01/2017','Weer de standaard onzin', '40 Gram', '60 Maanden');
