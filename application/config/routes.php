@@ -69,4 +69,6 @@ $route['participant/index'] = 'participant/index';
 $route['participant/create'] = 'participant/create';
 $route['participant/edit/(:any)'] = 'participant/edit/$1';
 $route['participant/view/(:any)'] = 'participant/view/$1';
+$route['participant/invite'] = 'participant/invite';
+$route['participant/clear'] = 'participant/clear';
 $route['participant/(:any)'] = 'participant/view/$1';

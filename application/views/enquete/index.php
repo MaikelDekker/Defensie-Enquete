@@ -13,6 +13,9 @@
             <td><a href="<?php echo site_url('enquete/'.$enquete_item['slug']); ?>">View</a></td>
             <td><a href="<?php echo site_url('enquete/edit/'.$enquete_item['id']); ?>">Edit</a></td>
             <td><a href="<?php echo site_url('enquete/delete/'.$enquete_item['id']); ?>" onClick="return confirm('Are you sure you want to delete?')">Delete</a></td>
+            <form action="theSamePage.php" method="post">
+                <input type="submit" name="someAction" value="GO" />
+            </form>
         </tr>
 <?php endforeach; ?>
 </table>

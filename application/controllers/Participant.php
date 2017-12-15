@@ -10,7 +10,7 @@ class Participant extends CI_Controller {
  
     public function index()
     {
-        $data['participant'] = $this->participant_model->get_enquete();
+        $data['participant'] = $this->participant_model->get_participant();
         $data['title'] = 'View of participant';
  
         $this->load->view('templates/header', $data);
@@ -20,7 +20,7 @@ class Participant extends CI_Controller {
  
     public function view($slug = NULL)
     {
-        $data['participant_item'] = $this->participant_model->get_participant_by_id($slug);
+        $data['participant_item'] = $this->participant_model->get_participant($slug);
         
         if (empty($data['participant_item']))
         {
@@ -106,5 +106,38 @@ class Participant extends CI_Controller {
         
         $this->participant_model->delete_participant($id);        
         redirect( base_url() . 'index.php/participant/index');        
+    }
+
+    public function invite()
+    {
+        $data['onetimelinks'] = $this->participant_model->get_onetimelinks();
+        $data['title'] = 'tokens';
+        $id = $this->uri->segment(3);
+        
+        $token = sha1(uniqid(true));
+        //echo "<script type='text/javascript'>alert('$token');</script>";
+        $this->participant_model->invite_participant($token);
+        
+        //( base_url() . 'index.php/participant/index');
+
+        redirect( base_url() . 'index.php/participant/index');
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('participant/invite', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function clear()
+    {
+        $data['title'] = 'homos';
+        $id = $this->uri->segment(3);
+        
+        $this->participant_model->clear_tokens();
+        
+        redirect( base_url() . 'index.php/participant/index');
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('participant/clear', $data);
+        $this->load->view('templates/footer');
     }
 }
