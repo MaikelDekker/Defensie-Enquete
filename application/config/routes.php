@@ -72,3 +72,7 @@ $route['participant/view/(:any)'] = 'participant/view/$1';
 $route['participant/invite'] = 'participant/invite';
 $route['participant/clear'] = 'participant/clear';
 $route['participant/(:any)'] = 'participant/view/$1';
+
+/*Enquete nieuwe stijl*/
+$route['enquetenieuw'] = 'enquetenieuw';
+$route['enquetenieuw/index'] = 'enquetenieuw/index';
