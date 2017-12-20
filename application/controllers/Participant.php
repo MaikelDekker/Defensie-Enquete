@@ -117,8 +117,6 @@ class Participant extends CI_Controller {
         $token = sha1(uniqid(true));
         //echo "<script type='text/javascript'>alert('$token');</script>";
         $this->participant_model->invite_participant($token);
-        
-        //( base_url() . 'index.php/participant/index');
 
         redirect( base_url() . 'index.php/participant/index');
 
@@ -129,7 +127,7 @@ class Participant extends CI_Controller {
 
     public function clear()
     {
-        $data['title'] = 'homos';
+        $data['title'] = '';
         $id = $this->uri->segment(3);
         
         $this->participant_model->clear_tokens();

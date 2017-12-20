@@ -59,22 +59,10 @@ class Participant_model extends CI_Model {
 
     public function invite_participant($token)
     {
-        /*$db = mysqli_connect("localhost","root","","enquete");
-        //$query = $db->prepare("INSERT INTO onetimelinks ($token/*,tstamp) VALUES ($token)");
-        //mysqli_query($db,"INSERT INTO onetimelinks ($token) VALUES ($token)");
-        mysqli_query($db,"SELECT * FROM onetimelinks");
-        mysqli_query($db,"INSERT INTO onetimelinks (token) VALUES ($token)");
-        $query = "INSERT INTO onetimelinks (token) VALUES ($token)";
-        $db->query($query);
-        mysqli_close($db);*/
         $dbCon = mysqli_connect("localhost", "root", "", "enquete") or die (mysql_error());
         $query = "INSERT INTO onetimelinks (token, tstamp) VALUES ('$token', '1')";
         mysqli_query($dbCon, $query) or die (mysqli_error($dbCon));
         $result = mysqli_affected_rows($dbCon);
-        /*if($result===TRUE)
-          echo"The query ran successfully";
-        else
-          echo"The query did not run";*/
         mysqli_close($dbCon);
     }
 

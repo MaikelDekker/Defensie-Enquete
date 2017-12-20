@@ -10,12 +10,43 @@ class Enquete extends CI_Controller {
  
     public function index()
     {
-        $data['enquete'] = $this->enquete_model->get_enquete();
-        $data['title'] = 'View of enquete';
- 
-        $this->load->view('templates/header', $data);
-        $this->load->view('enquete/index', $data);
-        $this->load->view('templates/footer');
+        $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $id = substr($url, strrpos($url, '/') + 1);
+
+        $dbCon = mysqli_connect("localhost", "root", "", "enquete") or die (mysql_error());
+        $query = "SELECT token FROM onetimelinks WHERE token = '$id'";
+        $result = mysqli_query($dbCon, $query) or die (mysqli_error($dbCon));
+
+        if ($result=mysqli_query($dbCon,$query ))
+        {
+          $numrows =mysqli_num_rows($result);      
+        }
+
+        if($numrows > 0)
+        {
+            $data['enquete'] = $this->enquete_model->get_enquete();
+            $data['title'] = 'View of enquete';
+     
+            $this->load->view('templates/header', $data);
+            $this->load->view('enquete/index', $data);
+            $this->load->view('templates/footer');
+            
+            $query = "DELETE onetimelinks FROM onetimelinks WHERE token = '$id'";
+            mysqli_query($dbCon, $query) or die (mysqli_error($dbCon));
+
+            if($numrows > 1)
+            {
+                echo "dubbele link";
+            }
+        } else
+        {
+            echo 'False Token';
+            $data['enquete'] = $this->enquete_model->get_enquete();
+     
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/footer');
+        }
+        mysqli_close($dbCon);
     }
  
     public function view($slug = NULL)
