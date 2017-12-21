@@ -7,7 +7,7 @@ body {
 
 section.page {
     margin: 0 auto;
-    max-width: 1160px;
+    max-width: 750px;
     height: auto;
     color: #fff;
     background-color: #1c1c1c;
@@ -27,7 +27,7 @@ hr {
   background-color:#fff;
 }
 
-.enqueteTextinput, .enqueteSelectinput, .enqueteSubmit {
+.enqueteTextinput, .enqueteSelectinput, .enqueteSubmit, .surveyQuestionOpen {
     height: 37px;
     border: 1px solid #ddd;
     border-radius: 2px;
@@ -36,6 +36,7 @@ hr {
     background-color: #fff;
     width: 100%;
     color: #555;
+    margin-top: 5px;
 }
 
 .question {

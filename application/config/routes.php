@@ -59,11 +59,11 @@ $route['news/edit/(:any)'] = 'news/edit/$1';
 $route['news/view/(:any)'] = 'news/view/$1';
 $route['news/(:any)'] = 'news/view/$1';
 
-$route['enquete/index'] = 'enquete/index';
-$route['enquete/create'] = 'enquete/create';
-$route['enquete/edit/(:any)'] = 'enquete/edit/$1';
-$route['enquete/view/(:any)'] = 'enquete/view/$1';
-$route['enquete/(:any)'] = 'enquete/view/$1';
+$route['adminEnquete/index'] = 'adminEnquete/index';
+$route['adminEnquete/create'] = 'adminEnquete/create';
+$route['adminEnquete/edit/(:any)'] = 'adminEnquete/edit/$1';
+$route['adminEnquete/view/(:any)'] = 'adminEnquete/view/$1';
+$route['adminEnquete/(:any)'] = 'adminEnquete/view/$1';
 
 $route['participant/index'] = 'participant/index';
 $route['participant/create'] = 'participant/create';
@@ -74,5 +74,5 @@ $route['participant/clear'] = 'participant/clear';
 $route['participant/(:any)'] = 'participant/view/$1';
 
 /*Enquete nieuwe stijl*/
-$route['enquetenieuw'] = 'enquetenieuw';
-$route['enquetenieuw/index'] = 'enquetenieuw/index';
+$route['enquete'] = 'enquete';
+$route['enquete/index'] = 'enquete/index';
