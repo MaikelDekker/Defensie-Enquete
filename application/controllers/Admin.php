@@ -1,36 +1,36 @@
 <?php
-class adminEnquete extends CI_Controller {
+class admin extends CI_Controller {
  
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('adminEnquete_model');
+        $this->load->model('admin_model');
         $this->load->helper('url_helper');
     }
  
     public function index()
     {
-        $data['adminEnquete'] = $this->adminEnquete_model->get_adminEnquete();
-        $data['title'] = 'View of adminEnquete';
+        $data['admin'] = $this->admin_model->get_admin();
+        $data['title'] = 'View of admin';
  
         $this->load->view('templates/header', $data);
-        $this->load->view('adminEnquete/index', $data);
+        $this->load->view('admin/index', $data);
         $this->load->view('templates/footer');
     }
  
     public function view($slug = NULL)
     {
-        $data['adminEnquete_item'] = $this->adminEnquete_model->get_adminEnquete($slug);
+        $data['admin_item'] = $this->admin_model->get_admin($slug);
         
-        if (empty($data['adminEnquete_item']))
+        if (empty($data['admin_item']))
         {
             show_404();
         }
  
-        $data['title'] = $data['adminEnquete_item']['title'];
+        $data['title'] = $data['admin_item']['title'];
  
         $this->load->view('templates/header', $data);
-        $this->load->view('adminEnquete/view', $data);
+        $this->load->view('admin/view', $data);
         $this->load->view('templates/footer');
     }
     
@@ -39,7 +39,7 @@ class adminEnquete extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
  
-        $data['title'] = 'Create a adminEnquete item';
+        $data['title'] = 'Create a admin item';
  
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
@@ -47,15 +47,15 @@ class adminEnquete extends CI_Controller {
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
-            $this->load->view('adminEnquete/create');
+            $this->load->view('admin/create');
             $this->load->view('templates/footer');
  
         }
         else
         {
-            $this->adminEnquete_model->set_adminEnquete();
+            $this->admin_model->set_admin();
             $this->load->view('templates/header', $data);
-            $this->load->view('adminEnquete/success');
+            $this->load->view('admin/success');
             $this->load->view('templates/footer');
         }
     }
@@ -72,8 +72,8 @@ class adminEnquete extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         
-        $data['title'] = 'Edit a adminEnquete item';        
-        $data['adminEnquete_item'] = $this->adminEnquete_model->get_adminEnquete_by_id($id);
+        $data['title'] = 'Edit a admin item';        
+        $data['admin_item'] = $this->admin_model->get_admin_by_id($id);
         
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
@@ -81,15 +81,15 @@ class adminEnquete extends CI_Controller {
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
-            $this->load->view('adminEnquete/edit', $data);
+            $this->load->view('admin/edit', $data);
             $this->load->view('templates/footer');
  
         }
         else
         {
-            $this->adminEnquete_model->set_adminEnquete($id);
-            //$this->load->view('adminEnquete/success');
-            redirect( base_url() . 'index.php/adminEnquete/index');
+            $this->admin_model->set_admin($id);
+            //$this->load->view('admin/success');
+            redirect( base_url() . 'index.php/admin/index');
         }
     }
     
@@ -102,9 +102,19 @@ class adminEnquete extends CI_Controller {
             show_404();
         }
                 
-        $adminEnquete_item = $this->adminEnquete_model->get_adminEnquete_by_id($id);
+        $admin_item = $this->admin_model->get_admin_by_id($id);
         
-        $this->adminEnquete_model->delete_adminEnquete($id);        
-        redirect( base_url() . 'index.php/adminEnquete/index');        
+        $this->admin_model->delete_admin($id);        
+        redirect( base_url() . 'index.php/admin/index');        
+    }
+
+    public function results()
+    {
+        $data['admin'] = $this->admin_model->get_admin();
+        $data['title'] = 'Results';
+ 
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/results', $data);
+        $this->load->view('templates/footer');
     }
 }

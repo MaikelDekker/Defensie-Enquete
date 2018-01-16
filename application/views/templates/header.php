@@ -10,7 +10,7 @@
                         <a href="<?php echo site_url('news/index'); ?>">Home</a> | 
                         <a href="<?php echo site_url('enquete/index'); ?>">Enqu&ecirc;te</a> | 
                         <a href="<?php echo site_url('participant/index'); ?>">Participant</a> | 
-                        <a href="<?php echo site_url('adminEnquete/index'); ?>">Admin</a>
+                        <a href="<?php echo site_url('admin/index'); ?>">Admin</a>
                 </p>
         </body>
 </html>

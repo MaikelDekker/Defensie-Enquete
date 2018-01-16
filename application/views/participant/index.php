@@ -2,8 +2,8 @@
  
 <table border='1' cellpadding='4'>
     <tr>
-        <td><strong>Title</strong></td>
-        <td><strong>Content</strong></td>
+        <td><strong>First name</strong></td>
+        <td><strong>Last name</strong></td>
         <td colspan="5"><strong>Action</strong></td>
     </tr>
 <?php foreach ($participant as $participant_item): ?>

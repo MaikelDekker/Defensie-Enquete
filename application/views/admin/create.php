@@ -2,7 +2,7 @@
  
 <?php echo validation_errors(); ?>
  
-<?php echo form_open('adminEnquete/create'); ?>    
+<?php echo form_open('admin/create'); ?>    
     <table>
         <tr>
             <td><label for="title">Title</label></td>
@@ -14,7 +14,8 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" name="submit" value="Create adminEnquete item" /></td>
+            <td><input type="submit" name="submit" value="Create admin item" /></td>
         </tr>
     </table>    
 </form>
+<button><a href="<?php echo site_url('admin/index'); ?>">Back</a></button>

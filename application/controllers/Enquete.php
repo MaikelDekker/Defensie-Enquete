@@ -13,7 +13,7 @@ class Enquete extends CI_Controller {
             $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
             $id = substr($url, strrpos($url, '/') + 1);
 
-            $dbCon = mysqli_connect("localhost", "root", "", "enquete") or die (mysql_error());
+            $dbCon = mysqli_connect("localhost", "root", "", "enquete_marine") or die (mysql_error());
             $query = "SELECT token FROM onetimelinks WHERE token = '$id'";
             $result = mysqli_query($dbCon, $query) or die (mysqli_error($dbCon));
 
@@ -43,7 +43,7 @@ class Enquete extends CI_Controller {
                 if ($this->form_validation->run() == FALSE)
                 {
                     $this->load->view('templates/enquete_header', $data);
-                    $this->load->view('Enquete/index', $data);
+                    $this->load->view('enquete/index', $data);
                     $this->load->view('templates/enquete_footer');
                 }
                 else
@@ -52,7 +52,7 @@ class Enquete extends CI_Controller {
                     mysqli_query($dbCon, $query) or die (mysqli_error($dbCon));
                     $this->Enquete_model->create_surveyAnswers();
                     $this->load->view('templates/enquete_header', $data);
-                    $this->load->view('Enquete/success');
+                    $this->load->view('enquete/success');
                     $this->load->view('templates/enquete_footer');
                 }
 

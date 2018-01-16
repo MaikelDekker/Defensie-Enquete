@@ -1,36 +1,36 @@
 <?php
-class AdminEnquete_model extends CI_Model {
+class admin_model extends CI_Model {
  
     public function __construct()
     {
         $this->load->database();
     }
     
-    public function get_AdminEnquete($slug = FALSE)
+    public function get_admin($slug = FALSE)
     {
         if ($slug === FALSE)
         {
-            $query = $this->db->get('AdminEnquete');
+            $query = $this->db->get('admin');
             return $query->result_array();
         }
  
-        $query = $this->db->get_where('AdminEnquete', array('slug' => $slug));
+        $query = $this->db->get_where('admin', array('slug' => $slug));
         return $query->row_array();
     }
     
-    public function get_AdminEnquete_by_id($id = 0)
+    public function get_admin_by_id($id = 0)
     {
         if ($id === 0)
         {
-            $query = $this->db->get('AdminEnquete');
+            $query = $this->db->get('admin');
             return $query->result_array();
         }
  
-        $query = $this->db->get_where('AdminEnquete', array('id' => $id));
+        $query = $this->db->get_where('admin', array('id' => $id));
         return $query->row_array();
     }
     
-    public function set_AdminEnquete($id = 0)
+    public function set_admin($id = 0)
     {
         $this->load->helper('url');
  
@@ -43,16 +43,16 @@ class AdminEnquete_model extends CI_Model {
         );
         
         if ($id == 0) {
-            return $this->db->insert('AdminEnquete', $data);
+            return $this->db->insert('admin', $data);
         } else {
             $this->db->where('id', $id);
-            return $this->db->update('AdminEnquete', $data);
+            return $this->db->update('admin', $data);
         }
     }
     
-    public function delete_AdminEnquete($id)
+    public function delete_admin($id)
     {
         $this->db->where('id', $id);
-        return $this->db->delete('AdminEnquete');
+        return $this->db->delete('admin');
     }
 }

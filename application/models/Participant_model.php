@@ -59,7 +59,7 @@ class Participant_model extends CI_Model {
 
     public function invite_participant($token)
     {
-        $dbCon = mysqli_connect("localhost", "root", "", "enquete") or die (mysql_error());
+        $dbCon = mysqli_connect("localhost", "root", "", "enquete_marine") or die (mysql_error());
         $query = "INSERT INTO onetimelinks (token, tstamp) VALUES ('$token', '1')";
         mysqli_query($dbCon, $query) or die (mysqli_error($dbCon));
         $result = mysqli_affected_rows($dbCon);
@@ -80,7 +80,7 @@ class Participant_model extends CI_Model {
 
     public function clear_tokens()
     {
-        $dbCon = mysqli_connect("localhost", "root", "", "enquete") or die (mysql_error());
+        $dbCon = mysqli_connect("localhost", "root", "", "enquete_marine") or die (mysql_error());
 
         mysqli_query($dbCon, "DELETE FROM `onetimelinks` WHERE 1");
     }

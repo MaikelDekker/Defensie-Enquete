@@ -1,3 +1,3 @@
 <?php
 $this->load->helper('url');
-redirect('adminEnquete/index');
+redirect('admin/index');
