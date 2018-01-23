@@ -6,104 +6,8 @@ class admin extends CI_Controller {
         parent::__construct();
         $this->load->model('admin_model');
         $this->load->helper('url_helper');
-    }
- 
-    public function index()
-    {
-        $data['title'] = 'Homepage';
-        //$this->load->view('templates/header', $data);
-        $this->load->view('admin/index', $data);
-        $this->load->view('templates/footer');
-    }
- 
-    public function view($slug = NULL)
-    {
-        $data['admin_item'] = $this->admin_model->get_admin($slug);
-        
-        if (empty($data['admin_item']))
-        {
-            show_404();
-        }
- 
-        $data['title'] = $data['admin_item']['title'];
- 
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/view', $data);
-        $this->load->view('templates/footer');
-    }
-    
-    public function create()
-    {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
- 
-        $data['title'] = 'Create a admin item';
- 
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('text', 'Text', 'required');
- 
-        if ($this->form_validation->run() === FALSE)
-        {
-            $this->load->view('templates/header', $data);
-            $this->load->view('admin/create');
-            $this->load->view('templates/footer');
- 
-        }
-        else
-        {
-            $this->admin_model->set_admin();
-            $this->load->view('templates/header', $data);
-            $this->load->view('admin/success');
-            $this->load->view('templates/footer');
-        }
-    }
-    
-    public function edit()
-    {
-        $id = $this->uri->segment(3);
-        
-        if (empty($id))
-        {
-            show_404();
-        }
-        
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        
-        $data['title'] = 'Edit a admin item';        
-        $data['admin_item'] = $this->admin_model->get_admin_by_id($id);
-        
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('text', 'Text', 'required');
- 
-        if ($this->form_validation->run() === FALSE)
-        {
-            $this->load->view('templates/header', $data);
-            $this->load->view('admin/edit', $data);
-            $this->load->view('templates/footer');
- 
-        }
-        else
-        {
-            $this->admin_model->set_admin($id);
-            //$this->load->view('admin/success');
-            redirect( base_url() . 'index.php/admin/index');
-        }
-    }
-    
-    public function delete()
-    {
-        $id = $this->uri->segment(3);
-        
-        if (empty($id))
-        {
-            show_404();
-        }
-                
-        $admin_item = $this->admin_model->get_admin_by_id($id);
-        
-        $this->admin_model->delete_admin($id);        
-        redirect( base_url() . 'index.php/admin/index');        
+        $this->load->library(array('session'));
+        $this->load->helper(array('url'));
     }
 
     public function results()
@@ -114,5 +18,81 @@ class admin extends CI_Controller {
         $this->load->view('templates/header', $data);
         $this->load->view('admin/results', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function register_view(){
+ 
+        $this->load->view("admin/register.php");
+     
+    }
+
+    public function register_user(){
+     
+          $user=array(
+          'user_name'=>$this->input->post('user_name'),
+          'user_email'=>$this->input->post('user_email'),
+          'user_password'=>md5($this->input->post('user_password'))
+            );
+            print_r($user);
+     
+    $email_check=$this->admin_model->email_check($user['user_email']);
+     
+    if($email_check){
+      $this->admin_model->register_user($user);
+      $this->session->set_flashdata('success_msg', 'Account succesvol aangemaakt! U kunt nu inloggen.');
+      redirect('admin/login_view');
+     
+    }
+    else{
+     
+      $this->session->set_flashdata('error_msg', 'Error occured,Try again.');
+      redirect('admin');
+     
+     
+    }
+     
+    }
+     
+    public function login_view(){
+     
+        $this->load->view("admin/login.php");
+     
+    }
+     
+    function login_user(){
+      $user_login=array(
+     
+      'user_email'=>$this->input->post('user_email'),
+      'user_password'=>md5($this->input->post('user_password'))
+     
+        );
+     
+        $data=$this->admin_model->login_user($user_login['user_email'],$user_login['user_password']);
+          if($data)
+          {
+            $this->session->set_userdata('user_id',$data['user_id']);
+            $this->session->set_userdata('user_email',$data['user_email']);
+            $this->session->set_userdata('user_name',$data['user_name']);
+     
+            $data['title'] = 'Homepage';
+            $this->load->view('admin/index.php', $data);     
+          }
+          else{
+            $this->session->set_flashdata('error_msg', 'Error, probeer het nog eens.');
+            $this->load->view("admin/login.php");     
+          }
+     
+     
+    }
+     
+    function user_profile(){
+     
+    $this->load->view('admin/user_profile.php');
+     
+    }
+    public function user_logout(){
+     
+      $this->session->sess_destroy();
+      redirect('admin/login_view', 'refresh');
     }
 }

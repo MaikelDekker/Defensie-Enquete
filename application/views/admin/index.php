@@ -15,6 +15,7 @@
                 <li><a href="<?php echo site_url('admin/index'); ?>">Admin</a></li>
             </ul>
         </li>
+        <a id="logout" href="<?php echo base_url('index.php/admin/user_logout');?>"><button type="button" class="btn-primary">Logout</button></a>
     </ul>
 </nav>
 <main style="width: 50%; text-align: center; margin-left: 25%;">

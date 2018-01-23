@@ -1,8 +1,9 @@
 <?php
 class admin_model extends CI_Model {
- 
+
     public function __construct()
     {
+        parent::__construct();
         $this->load->database();
     }
     
@@ -29,30 +30,40 @@ class admin_model extends CI_Model {
         $query = $this->db->get_where('admin', array('id' => $id));
         return $query->row_array();
     }
-    
-    public function set_admin($id = 0)
-    {
-        $this->load->helper('url');
- 
-        $slug = url_title($this->input->post('title'), 'dash', TRUE);
- 
-        $data = array(
-            'title' => $this->input->post('title'),
-            'slug' => $slug,
-            'text' => $this->input->post('text')
-        );
+
+    public function register_user($user){
+   
+   
+    $this->db->insert('admin', $user);
+   
+    }
+   
+    public function login_user($email,$pass){
+       
+        $this->db->select('*');
+        $this->db->from('admin');
+        $this->db->where('user_email',$email);
+        $this->db->where('user_password',$pass);
         
-        if ($id == 0) {
-            return $this->db->insert('admin', $data);
-        } else {
-            $this->db->where('id', $id);
-            return $this->db->update('admin', $data);
+        if($query=$this->db->get())
+        {
+            return $query->row_array();
+        }
+        else{
+          return false;
         }
     }
-    
-    public function delete_admin($id)
-    {
-        $this->db->where('id', $id);
-        return $this->db->delete('admin');
+      
+    public function email_check($email){
+       
+        $this->db->select('*');
+        $this->db->from('admin');
+        $this->db->where('user_email',$email);
+        $query=$this->db->get();
+                if($query->num_rows()>0){
+          return false;
+        }else{
+          return true;
+        }
     }
 }

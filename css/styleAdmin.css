@@ -102,3 +102,8 @@ section a:hover
     background-repeat: no-repeat;
     height: 40px;
 }
+
+#logout
+{
+    float: right; clear: right;
+}

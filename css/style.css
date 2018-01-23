@@ -172,3 +172,23 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #808080;
 }
+
+tr, td, th
+{
+  background-color: #191E2F;
+  color: white;
+}
+
+.login
+{
+  width: 25%;
+  max-width: 250px;
+  text-align: center;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.form-control
+{
+  margin-bottom: 10px;
+}

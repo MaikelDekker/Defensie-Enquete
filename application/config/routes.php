@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['home/index'] = 'home/index';
 $route['(:any)'] = 'pages/view/$1';
-$route['default_controller'] = 'pages/view';
+$route['default_controller'] = 'news';
 
 $route['news/index'] = 'news/index';
 $route['news/create'] = 'news/create';
@@ -59,12 +59,12 @@ $route['news/edit/(:any)'] = 'news/edit/$1';
 $route['news/view/(:any)'] = 'news/view/$1';
 $route['news/(:any)'] = 'news/view/$1';
 
-$route['admin/index'] = 'admin/index';
+$route['admin/index'] = 'admin/login_view';
 $route['admin/create'] = 'admin/create';
 $route['admin/results'] = 'admin/results';
-$route['admin/edit/(:any)'] = 'admin/edit/$1';
-$route['admin/view/(:any)'] = 'admin/view/$1';
-$route['admin/(:any)'] = 'admin/view/$1';
+$route['admin/login'] = 'admin/login_view';
+$route['admin/register'] = 'admin/register_view';
+$route['admin/login_user'] = 'admin/login_user';
 
 $route['participant/index'] = 'participant/index';
 $route['participant/create'] = 'participant/create';
@@ -73,6 +73,7 @@ $route['participant/view/(:any)'] = 'participant/view/$1';
 $route['participant/invite'] = 'participant/invite';
 $route['participant/clear'] = 'participant/clear';
 $route['participant/(:any)'] = 'participant/view/$1';
+
 
 /*Enquete nieuwe stijl*/
 $route['enquete'] = 'enquete';
